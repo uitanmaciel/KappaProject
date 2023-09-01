@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E1C83B6E-B238-4DD2-9DAE-E232C194990F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{38A74538-1F3C-4058-8FD9-2C362B41CCAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kappa-statistic", "kappa-statistic", "{AA15B1A2-498B-4B9A-A7BD-B5E72ECF4CA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dist", "dist", "{49589569-7609-4438-8D99-6960676AFED2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kappa.NET", "src\libs\dist\Kappa.NET\Kappa.NET.csproj", "{BFB23FCA-4309-4E0E-B0C2-F2A6EA7167B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kappa.NET.Statistics", "src\libs\kappa-statistic\Kappa.NET.Statistics\Kappa.NET.Statistics.csproj", "{9635807F-C31B-4983-A5B9-F5C449329710}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kappa.NET.Statistics.Core", "src\libs\kappa-statistic\Kappa.NET.Statistics.Core\Kappa.NET.Statistics.Core.csproj", "{C1A9914B-CF22-4042-90A1-E38CB0F1EBEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0B438F91-E4FD-4F4D-8C49-15852911FD58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kappa.NET.Tests", "tests\Kappa.NET.Tests\Kappa.NET.Tests.csproj", "{136AD85F-1271-40A4-8091-B599C6786B64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFB23FCA-4309-4E0E-B0C2-F2A6EA7167B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB23FCA-4309-4E0E-B0C2-F2A6EA7167B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB23FCA-4309-4E0E-B0C2-F2A6EA7167B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB23FCA-4309-4E0E-B0C2-F2A6EA7167B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9635807F-C31B-4983-A5B9-F5C449329710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9635807F-C31B-4983-A5B9-F5C449329710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9635807F-C31B-4983-A5B9-F5C449329710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9635807F-C31B-4983-A5B9-F5C449329710}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1A9914B-CF22-4042-90A1-E38CB0F1EBEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1A9914B-CF22-4042-90A1-E38CB0F1EBEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1A9914B-CF22-4042-90A1-E38CB0F1EBEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1A9914B-CF22-4042-90A1-E38CB0F1EBEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{136AD85F-1271-40A4-8091-B599C6786B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{136AD85F-1271-40A4-8091-B599C6786B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{136AD85F-1271-40A4-8091-B599C6786B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{136AD85F-1271-40A4-8091-B599C6786B64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38A74538-1F3C-4058-8FD9-2C362B41CCAA} = {E1C83B6E-B238-4DD2-9DAE-E232C194990F}
+		{AA15B1A2-498B-4B9A-A7BD-B5E72ECF4CA3} = {38A74538-1F3C-4058-8FD9-2C362B41CCAA}
+		{49589569-7609-4438-8D99-6960676AFED2} = {38A74538-1F3C-4058-8FD9-2C362B41CCAA}
+		{BFB23FCA-4309-4E0E-B0C2-F2A6EA7167B9} = {49589569-7609-4438-8D99-6960676AFED2}
+		{9635807F-C31B-4983-A5B9-F5C449329710} = {AA15B1A2-498B-4B9A-A7BD-B5E72ECF4CA3}
+		{C1A9914B-CF22-4042-90A1-E38CB0F1EBEC} = {AA15B1A2-498B-4B9A-A7BD-B5E72ECF4CA3}
+		{136AD85F-1271-40A4-8091-B599C6786B64} = {0B438F91-E4FD-4F4D-8C49-15852911FD58}
+	EndGlobalSection
+EndGlobal
