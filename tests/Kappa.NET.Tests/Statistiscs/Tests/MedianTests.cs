@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class MedianTests
@@ -17,6 +19,6 @@ public class MedianTests
     public void MedianCalculateTest()
     {
         var median = statistic.Median(data.X);
-        Assert.AreEqual<double>(21.2050, Math.Round(median, 4));
+        Assert.AreEqual(21.2050, Math.Round(median, 4));
     }
 }

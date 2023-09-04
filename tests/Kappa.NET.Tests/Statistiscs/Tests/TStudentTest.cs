@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class TStudentTest
@@ -17,6 +19,6 @@ public class TStudentTest
     public void TSlopeCalculateTest()
     {
         var tSlope = statistic.TStudent.Slope(data.X, data.Y);
-        Assert.AreEqual<double>(4.109, Math.Round(tSlope, 3));
+        Assert.AreEqual(4.109, Math.Round(tSlope, 3));
     }
 }

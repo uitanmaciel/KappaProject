@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class MeanTests
@@ -17,21 +19,21 @@ public class MeanTests
     public void MeanArithmeticCalculateTest()
     {
         var mean = statistic.Mean.Arithmetic(data.X);
-        Assert.AreEqual<double>(21.1159649122807, Math.Round(mean, 13));
+        Assert.AreEqual(21.1159649122807, Math.Round(mean, 13));
     }
 
     [TestMethod]
     public void MeanGeometricCalculateTest()
     {
         var mean = statistic.Mean.Geometric(data.X);
-        Assert.AreEqual<double>(21.0953251071075, Math.Round(mean, 13));
+        Assert.AreEqual(21.0953251071075, Math.Round(mean, 13));
     }
 
     [TestMethod]
     public void MeanHarmonicCalculateTest()
     {
         var mean = statistic.Mean.Harmonic(data.X);
-        Assert.AreEqual<double>(21.074394073019, Math.Round(mean, 13));
+        Assert.AreEqual(21.074394073019, Math.Round(mean, 13));
     }
 
     [TestMethod]
@@ -41,7 +43,7 @@ public class MeanTests
         double[] weights = { 19.20, 18.22, 19.98, 20.55, 21.52 };
 
         var mean = statistic.Mean.Weighted(values, weights);
-        Assert.AreEqual<double>(20.2775, Math.Round(mean, 4));
+        Assert.AreEqual(20.2775, Math.Round(mean, 4));
     }
 
 }

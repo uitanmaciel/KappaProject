@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class SlopeTests
@@ -17,13 +19,13 @@ public class SlopeTests
     public void SlopeCalculateTest()
     {
         var slope = statistic.Slope.Slope(data.X, data.Y);
-        Assert.AreEqual<double>(0.36013, Math.Round(slope, 5));
+        Assert.AreEqual(0.36013, Math.Round(slope, 5));
     }
 
     [TestMethod]
     public void SlopeErrorCalculateTest()
     {
         var slopeError = statistic.Slope.Error(data.X, data.Y);
-        Assert.AreEqual<double>(0.08764, Math.Round(slopeError, 5));
+        Assert.AreEqual(0.08764, Math.Round(slopeError, 5));
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class VarianceTests
@@ -17,6 +19,6 @@ public class VarianceTests
     public void VarianceCalculateTest()
     {
         var variance = statistic.Variance(data.X);
-        Assert.AreEqual<double>(0.867224281943798, Math.Round(variance, 15));
+        Assert.AreEqual(0.867224281943798, Math.Round(variance, 15));
     }
 }

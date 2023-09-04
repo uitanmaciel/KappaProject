@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class InterceptTests
@@ -17,6 +19,6 @@ public class InterceptTests
     public void InterceptCalculateTest()
     {
         var intercept = statistic.Intercept(data.X, data.Y);
-        Assert.AreEqual<double>(25.29438, Math.Round(intercept, 5));
+        Assert.AreEqual(25.29438, Math.Round(intercept, 5));
     }
 }

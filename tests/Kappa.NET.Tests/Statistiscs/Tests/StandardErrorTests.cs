@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class StandardErrorTests
@@ -17,6 +19,6 @@ public class StandardErrorTests
     public void StandardErrorCalculateTest()
     {
         var stdError = statistic.StandardError(data.X, data.Y);
-        Assert.AreEqual<double>(0.8676, Math.Round(stdError, 4));
+        Assert.AreEqual(0.8676, Math.Round(stdError, 4));
     }
 }

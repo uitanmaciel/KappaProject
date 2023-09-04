@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class CorrelationTests
@@ -17,13 +19,13 @@ public class CorrelationTests
     public void CorrelationPearsonCalculateTest()
     {
         var correlation = statistic.Correlation.Pearson(data.X, data.Y);
-        Assert.AreEqual<double>(0.361957081027961, Math.Round(correlation, 15));
+        Assert.AreEqual(0.361957081027961, Math.Round(correlation, 15));
     }
 
     [TestMethod]
     public void CorrelationPearsonAsyncCalculateTest()
     {
         var correlation = statistic.Correlation.PearsonAsync(data.X, data.Y);
-        Assert.AreEqual<double>(0.361957081027961, Math.Round(correlation.Result, 15));
+        Assert.AreEqual(0.361957081027961, Math.Round(correlation.Result, 15));
     }
 }

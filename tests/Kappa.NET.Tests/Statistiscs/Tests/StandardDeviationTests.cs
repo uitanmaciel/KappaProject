@@ -1,4 +1,6 @@
-﻿namespace Kappa.NET.Tests.Tests;
+﻿using Kappa.NET.Tests.Statistiscs.Data;
+
+namespace Kappa.NET.Tests.Statistiscs.Tests;
 
 [TestClass]
 public class StandardDeviationTests
@@ -17,6 +19,6 @@ public class StandardDeviationTests
     public void StandardDeviationCalculateTest()
     {
         var std = statistic.StandardDeviation(data.X);
-        Assert.AreEqual<double>(0.931248775539489, Math.Round(std, 15));
+        Assert.AreEqual(0.931248775539489, Math.Round(std, 15));
     }
 }

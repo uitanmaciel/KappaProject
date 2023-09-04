@@ -1,4 +1,4 @@
-﻿namespace Kappa.NET.Tests.Data;
+﻿namespace Kappa.NET.Tests.Statistiscs.Data;
 
 public class Dataset
 {
