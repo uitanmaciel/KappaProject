@@ -18,7 +18,7 @@ public class Squares : EntityBase
     {
         try
         {
-            return Math.Pow(new Correlation(X, Y).Pearson(), 2);
+            return Math.Pow(new Kappa.NET.Statistics.Core.Entities.Correlation.Pearson(X, Y).Calculate().Result, 2);
         }
         catch (Exception e)
         {

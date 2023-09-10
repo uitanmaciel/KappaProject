@@ -1,20 +1,24 @@
-﻿using Kappa.NET.Statistics.Interfaces;
-
-namespace Kappa.NET.Statistics.Services;
+﻿namespace Kappa.NET.Statistics.Services;
 
 public sealed class CorrelationService : ICorrelation
 {
     public CorrelationService() { }
 
-    public double Pearson(double[] x, double[] y)
+    public async Task<double> Pearson(double[] x, double[] y)
     {
-        var correlation = new Correlation(x, y);
-        return correlation.Pearson();
+        var correlation = new Kappa.NET.Statistics.Core.Entities.Correlation.Pearson(x, y);
+        return await correlation.Calculate();
     }
 
-    public Task<double> PearsonAsync(double[] x, double[] y)
+    public double Kendall(double[] x, double[] y)
     {
-        var correlation = new Correlation(x, y);
-        return correlation.PearsonAsync();
+        var correlation = new Kappa.NET.Statistics.Core.Entities.Correlation.Kendall(x, y);
+        return correlation.Calculate();
+    }
+
+    public async Task<double> Spearman(double[] x, double[] y)
+    {
+        var correlation = new Kappa.NET.Statistics.Core.Entities.Correlation.Spearman(x, y);
+        return await correlation.Calculate();
     }
 }
