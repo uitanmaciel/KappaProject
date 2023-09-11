@@ -1,5 +1,4 @@
 ﻿using Kappa.NET.Statistics.Core.Abstracts;
-using System.Linq;
 
 namespace Kappa.NET.Statistics.Core.Entities.Correlation;
 
@@ -17,28 +16,26 @@ public sealed class Spearman : EntityBase
 
     public async Task<double> Calculate()
     {
-        var sortedX = X.Select((value, index) => new { Value = value, OriginIndex = index })
-                       .OrderBy(item => item.Value)
-                       .Select((value, index) => new { Index = index + 1, Value = value })
-                       .OrderBy(item => item.Value.OriginIndex)
-                       .ToArray();
-
-        var sortedY = Y.Select((value, index) => new { Value = value, OriginIndex = index })
-                       .OrderBy(item => item.Value)
-                       .Select((value, index) => new { Index = index + 1, Value = value })
-                       .OrderBy(item => item.Value.OriginIndex)
-                       .ToArray();
+        var sortedX = Task<double[]>.Run(() => Sort(X));
+        var sortedY = Task<double[]>.Run(() => Sort(Y));
+        await Task.WhenAll(sortedX, sortedY);
 
         double sumDiSquared = 0.0;
 
-        for(int i = 0; i < sortedX.Length; i++) 
+        for(int i = 0; i < sortedX.Result.Length; i++) 
         {
-            sumDiSquared += Math.Pow(sortedX[i].Index - sortedY[i].Index, 2);
-        }
+            sumDiSquared += Math.Pow(sortedX.Result[i].Index - sortedY.Result[i].Index, 2);
+        }        
+        return 1 - ((6 * sumDiSquared) / (X.Length * (Math.Pow(X.Length, 2) - 1)));
+    }
 
-        double numerator = 6 * sumDiSquared;
-        double denominator = X.Length * (Math.Pow(X.Length, 2) - 1);
-        double result = 1 - (numerator / denominator);
-        return 1 - (numerator / denominator);
+    private dynamic Sort(double[] data)
+    {
+        var order = data.Select((value, index) => new { Value = value, OriginIndex = index })
+                       .OrderBy(item => item.Value)
+                       .Select((value, index) => new { Index = index + 1, Value = value })
+                       .OrderBy(item => item.Value.OriginIndex)
+                       .ToArray();
+        return order;
     }
 }
