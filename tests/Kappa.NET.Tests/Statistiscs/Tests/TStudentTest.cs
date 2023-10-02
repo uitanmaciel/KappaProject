@@ -21,4 +21,11 @@ public class TStudentTest
         var tSlope = statistic.TStudent.Slope(data.X, data.Y);
         Assert.AreEqual(4.109, Math.Round(tSlope, 3));
     }
+
+    [TestMethod]
+    public void TSlopeAsyncCalculateTest()
+    {
+        var tSlope = statistic.TStudent.SlopeAsync(data.X, data.Y);
+        Assert.AreEqual(4.109, Math.Round(tSlope.Result, 3));
+    }
 }

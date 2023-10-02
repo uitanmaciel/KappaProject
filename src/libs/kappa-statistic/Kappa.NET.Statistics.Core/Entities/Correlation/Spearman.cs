@@ -14,28 +14,54 @@ public sealed class Spearman : EntityBase
         Y = y;
     }
 
-    public async Task<double> Calculate()
+    public double Execute()
     {
-        var sortedX = Task<double[]>.Run(() => Sort(X));
-        var sortedY = Task<double[]>.Run(() => Sort(Y));
-        await Task.WhenAll(sortedX, sortedY);
-
-        double sumDiSquared = 0.0;
-
-        for(int i = 0; i < sortedX.Result.Length; i++) 
-        {
-            sumDiSquared += Math.Pow(sortedX.Result[i].Index - sortedY.Result[i].Index, 2);
-        }        
-        return 1 - ((6 * sumDiSquared) / (X.Length * (Math.Pow(X.Length, 2) - 1)));
+        return new Pearson(Ranker(X), Ranker(Y)).Execute();
     }
 
-    private dynamic Sort(double[] data)
+    public async Task<double> ExecuteAsync()
     {
-        var order = data.Select((value, index) => new { Value = value, OriginIndex = index })
-                       .OrderBy(item => item.Value)
-                       .Select((value, index) => new { Index = index + 1, Value = value })
-                       .OrderBy(item => item.Value.OriginIndex)
-                       .ToArray();
-        return order;
+        var spearman = await Task<double>.Run(() => new Pearson(Ranker(X), Ranker(Y)).ExecuteAsync());
+        return spearman;        
+    }
+
+    private double[] Ranker(double[] data)
+    {
+        ArgumentNullException.ThrowIfNull(data, nameof(data));
+
+        var ranks = new double[data.Length];
+        var index = new int[data.Length];
+        for (int i = 0; i < data.Length; i++)
+            index[i] = i;
+
+        Arrays.Sort(data, index);
+        int previousIndex = 0;
+
+        for(int i = 1; i < data.Length; i++)
+        {
+             if(Math.Abs(data[i] - data[previousIndex]) <= 0d)
+                continue;
+            
+            if(i == previousIndex + 1)
+            {
+                ranks[index[previousIndex]] = i;                
+            }
+            else
+            {
+                RankerTies(ranks, index, previousIndex, i);                
+            }
+            previousIndex = i;
+        }
+        RankerTies(ranks, index, previousIndex, data.Length);
+        return ranks;
+    }
+
+    private void RankerTies(double[] ranks, int[] index, int a, int b) 
+    {
+        double rank = (b + a - 1) / 2d + 1;
+        for (int i = a; i < b; i++)
+        {
+            ranks[index[i]] = rank;
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Median : EntityBase
+public sealed class Median : EntityBase
 {
     private double[] Values { get; set; }
 

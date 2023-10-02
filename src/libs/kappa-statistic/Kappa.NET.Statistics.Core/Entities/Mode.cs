@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Mode : EntityBase
+public sealed class Mode : EntityBase
 {
     private double[] Values { get; set; }
 

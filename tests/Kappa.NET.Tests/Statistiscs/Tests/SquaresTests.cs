@@ -44,9 +44,16 @@ public class SquaresTests
     }
 
     [TestMethod]
-    public void SumSquareCalculateTest()
+    public void SumCalculateTest()
     {
-        var sumRes = statistic.Squares.SumSquare(data.X, data.Y);
-        Assert.AreEqual(97.006828070175, Math.Round(sumRes, 12));
+        var sum = statistic.Squares.Sum(data.X, data.Y);
+        Assert.AreEqual(97.006828070175, Math.Round(sum, 12));
+    }
+
+    [TestMethod]
+    public void SumAsyncCalculateTest()
+    {
+        var sum = statistic.Squares.SumAsync(data.X, data.Y);
+        Assert.AreEqual(97.006828070175, Math.Round(sum.Result, 12));
     }
 }

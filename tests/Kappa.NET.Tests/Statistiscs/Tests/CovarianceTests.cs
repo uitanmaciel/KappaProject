@@ -21,4 +21,11 @@ public class CovarianceTests
         var covariance = statistic.Covariance(data.X, data.Y);
         Assert.AreEqual(0.312309160068312, Math.Round(covariance, 15));
     }
+
+    [TestMethod]
+    public void CovarianceAsyncCalculateTest()
+    {
+        var covariance = statistic.CovarianceAsync(data.X, data.Y);
+        Assert.AreEqual(0.312309160068312, Math.Round(covariance.Result, 15));
+    }
 }

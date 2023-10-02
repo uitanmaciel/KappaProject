@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class StandardError : EntityBase
+public sealed class StandardError : EntityBase
 {
     private double[] X { get; set; }
     private double[] Y { get; set; }

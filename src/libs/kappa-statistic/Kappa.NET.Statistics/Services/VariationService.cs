@@ -10,9 +10,9 @@ public sealed class VariationService : IVariation
         return variation.Execute();
     }
 
-    public Task<double> VariationAsync(double[] data)
+    public async Task<double> VariationAsync(double[] data)
     {
         var variation = new Variation(data);
-        return variation.ExecuteAsync();
+        return await variation.ExecuteAsync();
     }
 }

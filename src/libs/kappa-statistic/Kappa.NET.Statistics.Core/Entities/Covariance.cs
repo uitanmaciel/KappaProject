@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Covariance : EntityBase
+public sealed class Covariance : EntityBase
 {
     private double[] X { get; set; }
     private double[] Y { get; set; }
@@ -14,16 +14,37 @@ public class Covariance : EntityBase
         Y = y;
     }
 
-    public double Covar()
+    public double Execute()
     {
         try
         {
-            double meanX = new Mean(X).Arithmetic();
-            double meanY = new Mean(Y).Arithmetic();
-            double sum = 0.0;
+            var meanX = new Mean(X).Arithmetic();
+            var meanY = new Mean(Y).Arithmetic();
+            double sum = 0d;
 
             for (int i = 0; i < X.Length; i++)
                 sum += (X[i] - meanX) * (Y[i] - meanY);
+
+            return sum / (X.Length - 1);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    public async Task<double> ExecuteAsync()
+    {
+        try
+        {
+            var meanX = Task<double>.Run(() => new Mean(X).Arithmetic());
+            var meanY = Task<double>.Run(() => new Mean(Y).Arithmetic());
+            await Task.WhenAll(meanX, meanY);
+
+            double sum = 0d;
+
+            for (int i = 0; i < X.Length; i++)
+                sum += (X[i] - meanX.Result) * (Y[i] - meanY.Result);
 
             return sum / (X.Length - 1);
         }

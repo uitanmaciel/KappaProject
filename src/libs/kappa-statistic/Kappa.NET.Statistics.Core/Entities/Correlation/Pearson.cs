@@ -14,13 +14,29 @@ public sealed class Pearson : EntityBase
         Y = y;
     }
 
-    public async Task<double> Calculate()
+    public double Execute()
+    {
+        try
+        {
+            var stdX = new StandardDeviation(X).Std();
+            var stdY = new StandardDeviation(Y).Std();
+            var covariance = new Covariance(X, Y).Execute();
+            
+            return covariance / (stdX * stdY);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    public async Task<double> ExecuteAsync()
     {
         try
         {
             var stdX = Task<double>.Run(() => new StandardDeviation(X).Std());
             var stdY = Task<double>.Run(() => new StandardDeviation(Y).Std());
-            var covariance = Task<double>.Run(() => new Covariance(X, Y).Covar());
+            var covariance = Task<double>.Run(() => new Covariance(X, Y).ExecuteAsync());
             await Task.WhenAll(stdX, stdY, covariance);
             return covariance.Result / (stdX.Result * stdY.Result);
         }

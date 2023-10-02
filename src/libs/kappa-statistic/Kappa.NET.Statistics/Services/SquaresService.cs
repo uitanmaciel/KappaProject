@@ -16,10 +16,16 @@ public sealed class SquaresService : ISquares
         return square.RSquaredAdjusted(k);
     }
 
-    public double SumSquare(double[] x, double[] y)
+    public double Sum(double[] x, double[] y)
     {
         var square = new Squares(x, y);
         return square.Sum();
+    }
+
+    public async Task<double> SumAsync(double[] x, double[] y)
+    {
+        var square = new Squares(x, y);
+        return await square.SumAsync();
     }
 
     public double SumSquareRegression(double[] x, double[] y)

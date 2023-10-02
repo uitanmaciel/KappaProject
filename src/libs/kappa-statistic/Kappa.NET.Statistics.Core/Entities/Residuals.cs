@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Residuals : EntityBase
+public sealed class Residuals : EntityBase
 {
     private double[] X { get; set; }
     private double[] Y { get; set; }
@@ -15,9 +15,9 @@ public class Residuals : EntityBase
     }
 
     public double[] Execute()
-    {
-        List<double> residuals = new();
+    {        
         var predicted = new Predict(X, Y).Execute();
+        List<double> residuals = new();
 
         try
         {

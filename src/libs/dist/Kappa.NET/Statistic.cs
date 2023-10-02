@@ -44,9 +44,19 @@ public sealed class Statistic : IStatistics
         return covariance.Covariance(x, y);
     }
 
+    public async Task<double> CovarianceAsync(double[] x, double[] y)
+    {
+        return await covariance.CovarianceAsync(x, y);
+    }
+
     public double Intercept(double[] x, double[] y)
     {
         return intercept.Intercept(x, y); 
+    }
+
+    public async Task<double> InterceptAsync(double[] x, double[] y)
+    {
+        return await intercept.InterceptAsync(x, y);
     }
 
     public double Median(double[] data)
@@ -62,6 +72,11 @@ public sealed class Statistic : IStatistics
     public double[] Predict(double[] x, double[] y)
     {
         return predict.Predict(x, y);
+    }
+
+    public Task<double[]> PredictAsync(double[] x, double[] y)
+    {
+        return predict.PredictAsync(x, y);
     }
 
     public double StandardDeviation(double[] data)

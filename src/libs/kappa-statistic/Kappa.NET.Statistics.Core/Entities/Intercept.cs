@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Intercept : EntityBase
+public sealed class Intercept : EntityBase
 {
     private double[] X { get; set; }
     private double[] Y { get; set; }
@@ -27,8 +27,22 @@ public class Intercept : EntityBase
         }
     }
 
+    public async Task<double> ExecuteAsync()
+    {
+        var slope = await Task<double>.Run(() => new Slope(X, Y).ExecuteAsync());
+        try
+        {
+            return (Y.Sum() - (slope * X.Sum())) / X.Length;
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
     public double Error()
     {
-        return 0.0;
+        //TODO
+        return double.NaN;
     }
 }

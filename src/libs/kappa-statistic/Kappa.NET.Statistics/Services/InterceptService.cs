@@ -9,4 +9,10 @@ public sealed class InterceptService : IIntercept
         var intercept = new Intercept(x, y);
         return intercept.Execute();
     }
+
+    public async Task<double> InterceptAsync(double[] x, double[] y)
+    {
+        var intercept = new Intercept(x, y);
+        return await intercept.ExecuteAsync();
+    }
 }

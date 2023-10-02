@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Squares : EntityBase
+public sealed class Squares : EntityBase
 {
     private double[] X { get; set; }
     private double[] Y { get; set; }
@@ -18,7 +18,7 @@ public class Squares : EntityBase
     {
         try
         {
-            return Math.Pow(new Kappa.NET.Statistics.Core.Entities.Correlation.Pearson(X, Y).Calculate().Result, 2);
+            return Math.Pow(new Kappa.NET.Statistics.Core.Entities.Correlation.Pearson(X, Y).Execute(), 2);
         }
         catch (Exception e)
         {
@@ -42,7 +42,8 @@ public class Squares : EntityBase
     public double SumSquareRegression()
     {
         var mean = new Mean(Y).Arithmetic();
-        var yPredicted = new Predict(X, Y).Execute();
+        var yPredicted = new Predict(X, Y).Execute();       
+
         try
         {
             double sqe = 0.0;
@@ -75,11 +76,19 @@ public class Squares : EntityBase
 
     public double Sum()
     {
+        var sumReg = SumSquareRegression();
+        var sumRes = SumSquareResiduals();
+        return sumReg + sumRes;
+    }
+
+    public async Task<double> SumAsync()
+    {
         try
         {
-            var sumReg = SumSquareRegression();
-            var sumRes = SumSquareResiduals();
-            return sumReg + sumRes;
+            var sumReg = Task<double>.Run(() => SumSquareRegression());
+            var sumRes = Task<double>.Run(() => SumSquareResiduals());
+            await Task.WhenAll(sumReg, sumRes);
+            return sumReg.Result + sumRes.Result;
         }
         catch (Exception e)
         {

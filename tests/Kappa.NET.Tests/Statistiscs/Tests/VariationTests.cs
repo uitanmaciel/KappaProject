@@ -21,4 +21,11 @@ public class VariationTests
         var variation = statistic.Variation(data.X);
         Assert.AreEqual(4.41016443912488, Math.Round(variation, 14));
     }
+
+    [TestMethod]
+    public void VariationAsyncCalculate()
+    {
+        var variation = statistic.VariationAsync(data.X);
+        Assert.AreEqual(4.41016443912488, Math.Round(variation.Result, 14));
+    }
 }

@@ -9,4 +9,10 @@ public sealed class PredictService : IPredict
         var predict = new Predict(x, y);
         return predict.Execute();
     }
+
+    public Task<double[]> PredictAsync(double[] x, double[] y)
+    {
+        var predict = new Predict(x, y);
+        return predict.ExecuteAsync();
+    }
 }

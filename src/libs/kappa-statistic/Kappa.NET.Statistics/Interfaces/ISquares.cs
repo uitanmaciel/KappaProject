@@ -41,5 +41,13 @@ public interface ISquares
     /// <param name="x">Dataset for X</param>
     /// <param name="y">Dataset for Y</param>
     /// <returns>Returns the sum of total squares from a simple regression.</returns>
-    double SumSquare(double[] x, double[] y);
+    double Sum(double[] x, double[] y);
+
+    /// <summary>
+    /// Calculates the sum of total squares of a simple regression.
+    /// </summary>
+    /// <param name="x">Dataset for X</param>
+    /// <param name="y">Dataset for Y</param>
+    /// <returns>Returns the sum of total squares from a simple regression.</returns>
+    Task<double> SumAsync(double[] x, double[] y);
 }

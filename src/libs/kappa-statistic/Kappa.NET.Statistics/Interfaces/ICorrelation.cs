@@ -8,7 +8,15 @@ public interface ICorrelation
     /// <param name="x">Dataset for x</param>
     /// <param name="y">Dataset for y</param>
     /// <returns>Returns the correlation coefficient of the Pearson.</returns>
-    Task<double> Pearson(double[] x, double[] y);
+    double Pearson(double[] x, double[] y);
+
+    /// <summary>
+    /// Computes the correlation coefficient of the Pearson.
+    /// </summary>
+    /// <param name="x">Dataset for x</param>
+    /// <param name="y">Dataset for y</param>
+    /// <returns>Returns the correlation coefficient of the Pearson.</returns>
+    Task<double> PearsonAsync(double[] x, double[] y);
 
     /// <summary>
     /// Computes the correlation coefficient of the Tau Kendall.
@@ -18,6 +26,13 @@ public interface ICorrelation
     /// <returns>Returns the correlation coefficient of the Tau Kendall.</returns>
     double Kendall(double[] x, double[] y);
 
+    /// <summary>
+    /// Computes the correlation coefficient of the Spearman.
+    /// </summary>
+    /// <param name="x">Dataset for x</param>
+    /// <param name="y">Dataset for y</param>
+    /// <returns>Returns the correlation coefficient of the Spearman.</returns>
+    double Spearman(double[] x, double[] y);
 
     /// <summary>
     /// Computes the correlation coefficient of the Spearman.
@@ -25,5 +40,5 @@ public interface ICorrelation
     /// <param name="x">Dataset for x</param>
     /// <param name="y">Dataset for y</param>
     /// <returns>Returns the correlation coefficient of the Spearman.</returns>
-    Task<double> Spearman(double[] x, double[] y);
+    Task<double> SpearmanAsync(double[] x, double[] y);
 }

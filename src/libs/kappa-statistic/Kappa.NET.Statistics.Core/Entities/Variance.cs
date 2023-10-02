@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Variance : EntityBase
+public sealed class Variance : EntityBase
 {
     private double[] Values { get; set; }
 

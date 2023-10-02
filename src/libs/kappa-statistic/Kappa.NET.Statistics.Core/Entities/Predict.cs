@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Predict : EntityBase
+public sealed class Predict : EntityBase
 {
     private double[] X { get; set; }
     private double[] Y { get; set; }
@@ -16,10 +16,30 @@ public class Predict : EntityBase
 
     public double[] Execute()
     {
+        double slope = new Slope(X, Y).Execute();
+        double intercept = new Intercept(X, Y).Execute();
         List<double> predictList = new();
-        var slope = Task.Run(() => { return new Slope(X, Y).Execute(); });
-        var intercept = Task.Run(() => { return new Intercept(X, Y).Execute(); });
-        Task.WaitAll();
+
+        try
+        {
+            foreach (var i in X)
+                predictList.Add(slope * i + intercept);
+
+            return predictList.ToArray();
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    public async Task<double[]> ExecuteAsync()
+    {        
+        var slope = Task.Run(() => { return new Slope(X, Y).ExecuteAsync(); });
+        var intercept = Task.Run(() => { return new Intercept(X, Y).ExecuteAsync(); });
+        await Task.WhenAll(slope, intercept);
+
+        List<double> predictList = new();
 
         try
         {

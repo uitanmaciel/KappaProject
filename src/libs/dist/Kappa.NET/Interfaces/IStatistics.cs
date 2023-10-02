@@ -16,13 +16,31 @@ public interface IStatistics
     double Covariance(double[] x, double[] y);
 
     /// <summary>
+    /// /// <summary>
+    /// Computes the covariance of the data sets.
+    /// </summary>
+    /// <param name="x">Dataset to x</param>
+    /// <param name="y">Dataset to y</param>
+    /// <returns>Returns the covarianceof the data sets.</returns>
+    Task<double> CovarianceAsync(double[] x, double[] y);
+
+    /// <summary>
     /// Calculates the intercept (linear coefficient).
     /// </summary>
     /// <param name="x">Dataset values for X</param>
     /// <param name="y">Dataset values for Y</param>
     /// <returns>Returns a number that corresponds to the intercept (linear coefficient).</returns>
-    
+
     double Intercept(double[] x, double[] y);
+
+    /// <summary>
+    /// Calculates the intercept (linear coefficient).
+    /// </summary>
+    /// <param name="x">Dataset values for X</param>
+    /// <param name="y">Dataset values for Y</param>
+    /// <returns>Returns a number that corresponds to the intercept (linear coefficient).</returns>
+
+    Task<double> InterceptAsync(double[] x, double[] y);
 
     IMean Mean { get; }
 
@@ -50,6 +68,14 @@ public interface IStatistics
     /// <param name="y">Dataset values for Y</param>
     /// <returns>Returns optimal (predicted) value for each Y value in an data set.</returns>
     double[] Predict(double[] x, double[] y);
+
+    /// <summary>
+    /// Computes the optimal (expected) value for each value of Y in an data set.
+    /// </summary>
+    /// <param name="x">Dataset values for X</param>
+    /// <param name="y">Dataset values for Y</param>
+    /// <returns>Returns optimal (predicted) value for each Y value in an data set.</returns>
+    Task<double[]> PredictAsync(double[] x, double[] y);
 
     IResiduals Residuals { get; }
     ISlope Slope { get; }

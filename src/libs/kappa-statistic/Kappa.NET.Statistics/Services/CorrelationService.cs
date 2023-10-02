@@ -4,10 +4,16 @@ public sealed class CorrelationService : ICorrelation
 {
     public CorrelationService() { }
 
-    public async Task<double> Pearson(double[] x, double[] y)
+    public double Pearson(double[] x, double[] y)
     {
         var correlation = new Kappa.NET.Statistics.Core.Entities.Correlation.Pearson(x, y);
-        return await correlation.Calculate();
+        return correlation.Execute();
+    }
+
+    public async Task<double> PearsonAsync(double[] x, double[] y)
+    {
+        var correlation = new Kappa.NET.Statistics.Core.Entities.Correlation.Pearson(x, y);
+        return await correlation.ExecuteAsync();
     }
 
     public double Kendall(double[] x, double[] y)
@@ -16,9 +22,15 @@ public sealed class CorrelationService : ICorrelation
         return correlation.Calculate();
     }
 
-    public async Task<double> Spearman(double[] x, double[] y)
+    public double Spearman(double[] x, double[] y)
     {
         var correlation = new Kappa.NET.Statistics.Core.Entities.Correlation.Spearman(x, y);
-        return await correlation.Calculate();
+        return correlation.Execute();
+    }
+
+    public async Task<double> SpearmanAsync(double[] x, double[] y)
+    {
+        var correlation = new Kappa.NET.Statistics.Core.Entities.Correlation.Spearman(x, y);
+        return await correlation.ExecuteAsync();
     }
 }

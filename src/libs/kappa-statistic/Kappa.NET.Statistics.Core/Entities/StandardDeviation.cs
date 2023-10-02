@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class StandardDeviation : EntityBase
+public sealed class StandardDeviation : EntityBase
 {
     private double[] Values { get; set; }
 

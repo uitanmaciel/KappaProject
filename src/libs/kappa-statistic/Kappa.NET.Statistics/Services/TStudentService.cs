@@ -9,4 +9,10 @@ public sealed class TStudentService : ITStudent
         var tStudent = new TStudent(x, y);
         return tStudent.TSlope();
     }
+
+    public async Task<double> SlopeAsync(double[] x, double[] y)
+    {
+        var tStudent = new TStudent(x, y);
+        return await tStudent.TSlopeAsync();
+    }
 }

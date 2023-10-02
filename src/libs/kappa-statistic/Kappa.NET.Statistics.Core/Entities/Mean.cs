@@ -2,7 +2,7 @@
 
 namespace Kappa.NET.Statistics.Core.Entities;
 
-public class Mean : EntityBase
+public sealed class Mean : EntityBase
 {
     private double[] Values { get; set; } = null!;
 
